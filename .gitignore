@@ -13,3 +13,6 @@ sv_report_card.txt
 .vscode/
 .vs/
 .idea/
+
+# Local text files
+data.txt
