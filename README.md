@@ -2,7 +2,7 @@
 
 This is a C++ console application for managing a university student database. It allows you to add student admissions, mark attendance, enter exam scores, process fee payments, and view student reports. 
 
-I wrote this program to cover all the Object-Oriented Programming (OOP) concepts we learned in class. All variable and class attribute names start with the "sv_" prefix.
+I wrote this program to cover all the Object-Oriented Programming (OOP) concepts we learned in class.
 
 ## OOP Concepts Implemented
 
