@@ -64,7 +64,7 @@ public:
 // Student class inherits from Person
 class sv_Student : public sv_Person {
 private:
-    int sv_rollNo;
+    string sv_prn;
     string sv_course;
     int sv_attendanceDays;
     int sv_totalDays;
@@ -77,7 +77,7 @@ private:
 public:
     // Default constructor
     sv_Student() : sv_Person() {
-        sv_rollNo = 0;
+        sv_prn = "";
         sv_course = "None";
         sv_attendanceDays = 0;
         sv_totalDays = 0;
@@ -90,9 +90,9 @@ public:
     }
 
     // Parameterized constructor calling the base class constructor
-    sv_Student(string sv_sName, int sv_sAge, int sv_sRoll, string sv_sCourse, double sv_sTotalFees)
+    sv_Student(string sv_sName, int sv_sAge, string sv_sPrn, string sv_sCourse, double sv_sTotalFees)
         : sv_Person(sv_sName, sv_sAge) {
-        sv_rollNo = sv_sRoll;
+        sv_prn = sv_sPrn;
         sv_course = sv_sCourse;
         sv_attendanceDays = 0;
         sv_totalDays = 0;
@@ -105,7 +105,7 @@ public:
     }
 
     // Getters
-    int sv_getRollNo() const { return sv_rollNo; }
+    string sv_getPrn() const { return sv_prn; }
     string sv_getCourse() const { return sv_course; }
     int sv_getAttendanceDays() const { return sv_attendanceDays; }
     int sv_getTotalDays() const { return sv_totalDays; }
@@ -164,7 +164,7 @@ public:
         // Call the base class version to print name and age
         sv_Person::sv_displayInfo();
         
-        cout << "Roll Number   : " << sv_rollNo << endl;
+        cout << "PRN           : " << sv_prn << endl;
         cout << "Course        : " << sv_course << endl;
         cout << "Attendance    : " << sv_attendanceDays << "/" << sv_totalDays
              << " (" << fixed << setprecision(2) << sv_getAttendancePercentage() << "%)" << endl;
@@ -183,7 +183,7 @@ public:
     string sv_serialize() const {
         stringstream sv_ss;
         // Comma separated value representation
-        sv_ss << sv_rollNo << ","
+        sv_ss << sv_prn << ","
               << sv_name << ","
               << sv_age << ","
               << sv_course << ","
@@ -203,8 +203,7 @@ public:
         string sv_temp;
 
         try {
-            getline(sv_ss, sv_temp, ',');
-            sv_rollNo = stoi(sv_temp);
+            getline(sv_ss, sv_prn, ',');
 
             getline(sv_ss, sv_name, ',');
 
@@ -303,7 +302,7 @@ void sv_exportReportCards(const vector<sv_Student>& sv_list) {
     sv_reportFile << "=================================================================\n\n";
 
     for (const auto& sv_stud : sv_list) {
-        sv_reportFile << "Roll No: " << sv_stud.sv_getRollNo() << "\n";
+        sv_reportFile << "PRN: " << sv_stud.sv_getPrn() << "\n";
         sv_reportFile << "Name: " << sv_stud.sv_getName() << " | Age: " << sv_stud.sv_getAge() << "\n";
         sv_reportFile << "Course: " << sv_stud.sv_getCourse() << "\n";
         
@@ -370,27 +369,24 @@ int main() {
             case 1: {
                 // Admissions
                 string sv_nameInput, sv_courseInput;
-                int sv_ageInput, sv_rollInput;
+                int sv_ageInput;
+                string sv_prnInput;
                 double sv_feesInput;
 
                 cout << "\n--- Student Admission Portal ---" << endl;
-                cout << "Enter Roll Number: ";
-                if (!(cin >> sv_rollInput)) {
-                    cout << "[Error] Roll number must be a number." << endl;
-                    sv_clearInput();
-                    break;
-                }
+                cout << "Enter PRN: ";
+                cin >> sv_prnInput;
 
-                // Check if roll number already exists
+                // Check if PRN already exists
                 bool sv_exists = false;
                 for (const auto& sv_s : sv_students) {
-                    if (sv_s.sv_getRollNo() == sv_rollInput) {
+                    if (sv_s.sv_getPrn() == sv_prnInput) {
                         sv_exists = true;
                         break;
                     }
                 }
                 if (sv_exists) {
-                    cout << "[Error] Student with Roll Number " << sv_rollInput << " already exists!" << endl;
+                    cout << "[Error] Student with PRN " << sv_prnInput << " already exists!" << endl;
                     break;
                 }
 
@@ -417,7 +413,7 @@ int main() {
                 }
 
                 // Create a temporary student using parameterized constructor
-                sv_Student sv_newStud(sv_nameInput, sv_ageInput, sv_rollInput, sv_courseInput, sv_feesInput);
+                sv_Student sv_newStud(sv_nameInput, sv_ageInput, sv_prnInput, sv_courseInput, sv_feesInput);
                 sv_students.push_back(sv_newStud);
                 
                 // Save immediately
@@ -433,17 +429,13 @@ int main() {
                     break;
                 }
 
-                int sv_rollSearch;
-                cout << "\nEnter student Roll Number to mark attendance: ";
-                if (!(cin >> sv_rollSearch)) {
-                    cout << "[Error] Invalid roll number." << endl;
-                    sv_clearInput();
-                    break;
-                }
+                string sv_prnSearch;
+                cout << "\nEnter student PRN to mark attendance: ";
+                cin >> sv_prnSearch;
 
                 int sv_index = -1;
                 for (size_t sv_i = 0; sv_i < sv_students.size(); ++sv_i) {
-                    if (sv_students[sv_i].sv_getRollNo() == sv_rollSearch) {
+                    if (sv_students[sv_i].sv_getPrn() == sv_prnSearch) {
                         sv_index = sv_i;
                         break;
                     }
@@ -505,17 +497,13 @@ int main() {
                     break;
                 }
 
-                int sv_rollSearch;
-                cout << "\nEnter student Roll Number to update marks: ";
-                if (!(cin >> sv_rollSearch)) {
-                    cout << "[Error] Invalid roll number." << endl;
-                    sv_clearInput();
-                    break;
-                }
+                string sv_prnSearch;
+                cout << "\nEnter student PRN to update marks: ";
+                cin >> sv_prnSearch;
 
                 int sv_index = -1;
                 for (size_t sv_i = 0; sv_i < sv_students.size(); ++sv_i) {
-                    if (sv_students[sv_i].sv_getRollNo() == sv_rollSearch) {
+                    if (sv_students[sv_i].sv_getPrn() == sv_prnSearch) {
                         sv_index = sv_i;
                         break;
                     }
@@ -548,17 +536,13 @@ int main() {
                     break;
                 }
 
-                int sv_rollSearch;
-                cout << "\nEnter student Roll Number to pay fees: ";
-                if (!(cin >> sv_rollSearch)) {
-                    cout << "[Error] Invalid roll number." << endl;
-                    sv_clearInput();
-                    break;
-                }
+                string sv_prnSearch;
+                cout << "\nEnter student PRN to pay fees: ";
+                cin >> sv_prnSearch;
 
                 int sv_index = -1;
                 for (size_t sv_i = 0; sv_i < sv_students.size(); ++sv_i) {
-                    if (sv_students[sv_i].sv_getRollNo() == sv_rollSearch) {
+                    if (sv_students[sv_i].sv_getPrn() == sv_prnSearch) {
                         sv_index = sv_i;
                         break;
                     }
@@ -602,17 +586,13 @@ int main() {
                     break;
                 }
 
-                int sv_rollSearch;
-                cout << "\nEnter student Roll Number to view report: ";
-                if (!(cin >> sv_rollSearch)) {
-                    cout << "[Error] Invalid roll number." << endl;
-                    sv_clearInput();
-                    break;
-                }
+                string sv_prnSearch;
+                cout << "\nEnter student PRN to view report: ";
+                cin >> sv_prnSearch;
 
                 int sv_index = -1;
                 for (size_t sv_i = 0; sv_i < sv_students.size(); ++sv_i) {
-                    if (sv_students[sv_i].sv_getRollNo() == sv_rollSearch) {
+                    if (sv_students[sv_i].sv_getPrn() == sv_prnSearch) {
                         sv_index = sv_i;
                         break;
                     }
