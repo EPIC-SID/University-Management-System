@@ -1,0 +1,2 @@
+101,Alice Smith,19,Computer Science,15,17,85,90,95,5000,2000
+278,Siddhant Verma,19,B Tech. Computer Engineering,0,0,0,0,0,175000,0

@@ -1,0 +1,13 @@
+=================================================================
+             UNIVERSITY STUDENT MANAGEMENT REPORT                
+=================================================================
+
+Roll No: 101
+Name: Alice Smith | Age: 19
+Course: Computer Science
+Attendance: 15/17 (88.24%)
+Marks: Sub1: 85.00 | Sub2: 90.00 | Sub3: 95.00
+Average Mark: 90.00
+Fees: Total: $5000.00 | Paid: $2000.00 | Balance: $3000.00
+-----------------------------------------------------------------
+
