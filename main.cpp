@@ -173,9 +173,9 @@ public:
         double sv_avg = sv_calculateAverage(sv_marks1, sv_marks2, sv_marks3);
         cout << "Average Score : " << sv_avg << endl;
         
-        cout << "Total Tuition : ₹" << sv_totalFees << endl;
-        cout << "Fees Paid     : ₹" << sv_feesPaid << endl;
-        cout << "Fee Balance   : ₹" << sv_getFeeBalance() << endl;
+        cout << "Total Tuition : Rs. " << sv_totalFees << endl;
+        cout << "Fees Paid     : Rs. " << sv_feesPaid << endl;
+        cout << "Fee Balance   : Rs. " << sv_getFeeBalance() << endl;
         cout << "---------------------------------------------------" << endl;
     }
 
@@ -316,9 +316,9 @@ void sv_exportReportCards(const vector<sv_Student>& sv_list) {
                       << " | Sub3: " << sv_stud.sv_getMarks3() << "\n";
         sv_reportFile << "Average Mark: " << sv_avg << "\n";
         
-        sv_reportFile << "Fees: Total: ₹" << sv_stud.sv_getTotalFees() 
-                      << " | Paid: ₹" << sv_stud.sv_getFeesPaid() 
-                      << " | Balance: ₹" << sv_stud.sv_getFeeBalance() << "\n";
+        sv_reportFile << "Fees: Total: Rs. " << sv_stud.sv_getTotalFees() 
+                      << " | Paid: Rs. " << sv_stud.sv_getFeesPaid() 
+                      << " | Balance: Rs. " << sv_stud.sv_getFeeBalance() << "\n";
         sv_reportFile << "-----------------------------------------------------------------\n\n";
     }
 
@@ -409,7 +409,7 @@ int main() {
                 cout << "Enter Course Name: ";
                 getline(cin, sv_courseInput);
 
-                cout << "Enter Semester Fee Amount: ₹";
+                cout << "Enter Semester Fee Amount: Rs. ";
                 if (!(cin >> sv_feesInput)) {
                     cout << "[Error] Fee must be a number." << endl;
                     sv_clearInput();
@@ -570,12 +570,12 @@ int main() {
                 }
 
                 cout << "Current Fee Status: " << endl;
-                cout << "  Total Fees : ₹" << sv_students[sv_index].sv_getTotalFees() << endl;
-                cout << "  Paid       : ₹" << sv_students[sv_index].sv_getFeesPaid() << endl;
-                cout << "  Balance    : ₹" << sv_students[sv_index].sv_getFeeBalance() << endl;
+                cout << "  Total Fees : Rs. " << sv_students[sv_index].sv_getTotalFees() << endl;
+                cout << "  Paid       : Rs. " << sv_students[sv_index].sv_getFeesPaid() << endl;
+                cout << "  Balance    : Rs. " << sv_students[sv_index].sv_getFeeBalance() << endl;
 
                 double sv_payAmt;
-                cout << "Enter amount to pay: ₹";
+                cout << "Enter amount to pay: Rs. ";
                 if (!(cin >> sv_payAmt) || sv_payAmt <= 0) {
                     cout << "[Error] Payment amount must be a positive number." << endl;
                     sv_clearInput();
@@ -583,7 +583,7 @@ int main() {
                 }
 
                 if (sv_payAmt > sv_students[sv_index].sv_getFeeBalance()) {
-                    cout << "[Warning] Amount exceeds remaining balance. Paying only the remaining balance: ₹" 
+                    cout << "[Warning] Amount exceeds remaining balance. Paying only the remaining balance: Rs. " 
                          << sv_students[sv_index].sv_getFeeBalance() << endl;
                     sv_payAmt = sv_students[sv_index].sv_getFeeBalance();
                 }
