@@ -1,0 +1,15 @@
+# Compiler outputs
+*.exe
+*.o
+*.out
+*.obj
+main
+
+# Local database and report card outputs
+sv_database.txt
+sv_report_card.txt
+
+# IDE/editor folders
+.vscode/
+.vs/
+.idea/
