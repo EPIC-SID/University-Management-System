@@ -17,7 +17,7 @@ I wrote this program to cover all the Object-Oriented Programming (OOP) concepts
 
 ## Features
 
-- Add new student records with unique roll numbers.
+- Add new student records with unique PRN strings.
 - Track attendance (uses overloaded methods).
 - Store 3 subject exam marks and calculate average scores.
 - Pay tuition fees (shows remaining balance in Rupees).
