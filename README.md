@@ -26,8 +26,8 @@ I wrote this program to cover all the Object-Oriented Programming (OOP) concepts
 ## Files in this Project
 
 - `main.cpp`: The complete C++ source code file.
-- `sv_database.txt`: Saves student data in comma-separated lines.
-- `sv_report_card.txt`: Contains exported formatted report cards.
+- `sv_database.txt` (ignored by Git): Created automatically to save student data in comma-separated lines.
+- `sv_report_card.txt` (ignored by Git): Created automatically when exporting student report cards.
 
 ## Compilation and Execution
 
