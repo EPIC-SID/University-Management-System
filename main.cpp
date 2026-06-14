@@ -605,7 +605,7 @@ int main() {
 
                 // Showcase Polymorphism using the base pointer print helper
                 sv_Person* sv_personPtr = &sv_students[sv_index];
-                cout << "\nCalling polymorphic print function..." << endl;
+                cout << "\nLoading..." << endl;
                 sv_printPolymorphicDetails(sv_personPtr);
                 break;
             }
